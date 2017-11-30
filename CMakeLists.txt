@@ -6,16 +6,16 @@ add_definitions(-DRH_PLATFORM=RH_PLATFORM_RASPI -D__RASPBERRY_PI_)
 
 add_subdirectory(lib/arduino-linux-abstraction/)
 
-include_directories(RadioHead/)
+include_directories(RadioHeadRpi/)
 include_directories(lib/)
 include_directories(lib/arduino-linux-abstraction/src)
 
 set(RADIOHEAD_SRC_FILES
-        RadioHead/RH_RF95.h
-        RadioHead/RH_RF95.cpp
-        RadioHead/RHReliableDatagram.h
-        RadioHead/RHReliableDatagram.cpp
-        RadioHead/RHutil/)
+        RadioHeadRpi/RH_RF95.h
+        RadioHeadRpi/RH_RF95.cpp
+        RadioHeadRpi/RHReliableDatagram.h
+        RadioHeadRpi/RHReliableDatagram.cpp
+        RadioHeadRpi/RHutil/)
 
 set(EXAMPLE_LIB_SRC_FILES
 	lib/SocketInterface.h
