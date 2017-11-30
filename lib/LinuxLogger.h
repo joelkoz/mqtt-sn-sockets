@@ -23,23 +23,23 @@ private:
 #endif
 
 public:
-    bool begin() override;
+    bool begin();
 
-    void set_log_lvl(uint8_t log_lvl) override;
+    void set_log_lvl(uint8_t log_lvl);
 
-    void log(char *msg, uint8_t log_lvl) override;
+    void log(char *msg, uint8_t log_lvl);
 
-    void log(const char *msg, uint8_t log_lvl) override;
+    void log(const char *msg, uint8_t log_lvl);
 
-    void start_log(char *msg, uint8_t log_lvl) override;
+    void start_log(char *msg, uint8_t log_lvl);
 
-    void start_log(const char *msg, uint8_t log_lvl) override;
+    void start_log(const char *msg, uint8_t log_lvl);
 
-    void set_current_log_lvl(uint8_t log_lvl) override;
+    void set_current_log_lvl(uint8_t log_lvl);
 
-    void append_log(char *msg) override;
+    void append_log(char *msg);
 
-    void append_log(const char *msg) override;
+    void append_log(const char *msg);
 };
 
 

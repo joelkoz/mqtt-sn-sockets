@@ -1,0 +1,20 @@
+{
+  "name": "mqtt-sn-sockets",
+  "authors": {
+    "name": "Gabriel Nikol",
+    "url": "https://github.com/S3ler"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/S3ler/mqtt-sn-sockets.git"
+  },
+  "version": "0.0.1",
+  "export": {
+    "include": [
+      "lib/*.h",
+      "lib/*.cpp",
+      "RadioHead/*.h",
+      "RadioHead/*.cpp"
+    ]
+  }
+}
