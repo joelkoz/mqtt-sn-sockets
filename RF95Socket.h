@@ -6,7 +6,8 @@
 #include <RHReliableDatagram.h>
 #include <RH_RF95.h>
 
-#define OWN_ADDRESS 0x02
+
+//#define OWN_ADDRESS 0x02
 
 #define FREQUENCY 868
 //#define TX_POWER_PIN 18
