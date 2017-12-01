@@ -41,6 +41,10 @@ private:
 private:
     SocketInterface* socket;
     LoggerInterface *logger;
+#ifndef Arduino_h
+    SerialLinux Serial;
+#endif
+
 };
 
 

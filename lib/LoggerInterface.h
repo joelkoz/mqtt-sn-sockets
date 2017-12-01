@@ -2,6 +2,9 @@
 #define PLATFORMIOESP8266ENVIRONMENT_LOGGERINTERFACE_H
 
 #include <stdint.h>
+#if (RH_PLATFORM == RH_PLATFORM_RPI)
+#include <wiringPi.h>
+#endif
 #include <Arduino.h>
 
 class LoggerInterface {
