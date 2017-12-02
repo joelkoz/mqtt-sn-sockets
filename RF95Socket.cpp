@@ -39,7 +39,6 @@ bool RF95Socket::begin() {
         return false;
     }
 #endif
-    manager->setThisAddress(OWN_ADDRESS);
     return manager->init();
 }
 
