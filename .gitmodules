@@ -1,3 +1,6 @@
 [submodule "lib/arduino-linux-abstraction"]
 	path = lib/arduino-linux-abstraction
 	url = https://github.com/S3ler/arduino-linux-abstraction.git
+[submodule "RadioHeadRpi"]
+	path = RadioHeadRpi
+	url = https://github.com/S3ler/RadioHeadRpi.git
