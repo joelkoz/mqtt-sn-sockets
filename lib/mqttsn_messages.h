@@ -83,6 +83,11 @@ struct message_header {
         length = 2;
         type = MQTTSN_DISCONNECT;
     }
+
+    void to_pingresp() {
+        length = 2;
+        type = MQTTSN_PINGRESP;
+    }
 };
 
 #pragma pack(pop)

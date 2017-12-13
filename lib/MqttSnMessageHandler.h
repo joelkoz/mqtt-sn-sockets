@@ -19,28 +19,27 @@ class MqttSnMessageHandler {
 
 public:
 
-    bool begin();
+    virtual bool begin();
 
     void setSocket(SocketInterface *socket);
 
     void setLogger(LoggerInterface *logger);
 
-    bool send(device_address *destination, uint8_t *bytes, uint16_t bytes_len);
+    virtual bool send(device_address *destination, uint8_t *bytes, uint16_t bytes_len);
 
-    void receiveData(device_address *address, uint8_t *bytes);
+    virtual void receiveData(device_address *address, uint8_t *bytes);
 
-    bool loop();
+    virtual bool loop();
 
-private:
     void printReceived(device_address *address, uint8_t *bytes);
 
     void printDeviceAddress(device_address* address);
 
     void printBuffer(uint8_t* bytes);
 
-private:
-    SocketInterface* socket;
-    LoggerInterface *logger;
+public:
+    SocketInterface* socket = nullptr;
+    LoggerInterface *logger = nullptr;
 };
 
 
