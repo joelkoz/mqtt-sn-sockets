@@ -1,1 +1,9 @@
 examples/
+CMakeFiles/
+Makefile
+cmake_install.cmake
+*.o
+*.a
+
+.idea/
+cmake-build-debug/

@@ -40,6 +40,11 @@ public:
 public:
     SocketInterface* socket = nullptr;
     LoggerInterface *logger = nullptr;
+
+#ifndef Arduino_h
+    SerialLinux Serial;
+#endif
+
 };
 
 

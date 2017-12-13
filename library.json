@@ -11,6 +11,8 @@
   "version": "0.0.1",
   "export": {
     "include": [
+      "*.h",
+      "*.cpp",
       "lib/*.h",
       "lib/*.cpp",
       "RadioHead/*.h",

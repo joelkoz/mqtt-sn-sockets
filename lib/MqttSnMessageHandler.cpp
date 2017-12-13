@@ -1,6 +1,10 @@
-#include <stdio.h>
 #include "MqttSnMessageHandler.h"
-#include <Arduino.h>
+
+#ifndef Arduino_h
+
+#include <string>
+
+#endif
 
 bool MqttSnMessageHandler::begin() {
     if(socket == nullptr){
@@ -99,6 +103,12 @@ void MqttSnMessageHandler::printReceived(device_address *address, uint8_t *bytes
     printDeviceAddress(address);
     Serial.print(" | ");
     Serial.print(" bytes_len ");
+#ifndef Arduino_h
+    std::string number_str = std::to_string(bytes[0]);
+    Serial.print(number_str.c_str());
+#else
+    Serial.print(bytes[0]);
+#endif
     Serial.print(bytes[0]);
     Serial.print(" | ");
     printBuffer(bytes);
@@ -109,7 +119,12 @@ void MqttSnMessageHandler::printReceived(device_address *address, uint8_t *bytes
 void MqttSnMessageHandler::printDeviceAddress(device_address *address) {
     Serial.print("from { ");
     for (uint8_t i = 0; i < sizeof(device_address); i++) {
+#ifndef Arduino_h
+        std::string number_str = std::to_string(address->bytes[i]);
+        Serial.print(number_str.c_str());
+#else
         Serial.print(address->bytes[i]);
+#endif
         if (i == sizeof(device_address) - 1) {
             Serial.print(" }");
         } else {
@@ -121,7 +136,16 @@ void MqttSnMessageHandler::printDeviceAddress(device_address *address) {
 void MqttSnMessageHandler::printBuffer(uint8_t *bytes) {
     Serial.print("bytes { ");
     for (uint8_t i = 0; i < bytes[0]; i++) {
+#ifndef Arduino_h
+        if(i==0){
+            std::string number_str = std::to_string(bytes[i]);
+            Serial.print(number_str.c_str());
+        } else {
+            Serial.print(bytes[i]);
+        }
+#else
         Serial.print(bytes[i]);
+#endif
         if (i == bytes[0] - 1) {
             Serial.print(" }");
         } else {

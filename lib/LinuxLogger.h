@@ -12,6 +12,10 @@
 
 #include <Arduino.h>
 
+#if (RH_PLATFORM == RH_PLATFORM_RP)
+#include <wiringPi.h>
+#endif
+
 #endif
 
 class LinuxLogger : public LoggerInterface {
