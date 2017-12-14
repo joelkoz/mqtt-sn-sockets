@@ -33,7 +33,12 @@ void SimpleMqttSnClientTester::receiveData(device_address *address, uint8_t *byt
 }
 
 bool SimpleMqttSnClientTester::send(device_address *destination, uint8_t *bytes, uint16_t bytes_len) {
-    logger->log("SimpleMqttSnClientTester::send", 1);
+    Serial.print("SimpleMqttSnClientTester::send");
+    Serial.print(" | ");
+    printDeviceAddress(destination);
+    Serial.print(" | ");
+    printBuffer(bytes);
+    Serial.println();
     return socket->send(destination, bytes, bytes_len);
 }
 
@@ -45,13 +50,13 @@ void SimpleMqttSnClientTester::parse_pingreq(device_address *address, uint8_t *b
 }
 
 void SimpleMqttSnClientTester::handle_pingreq(device_address *source) {
-    send_ping(source);
+    send_pingresp(source);
 }
 
-void SimpleMqttSnClientTester::send_ping(device_address *destination) {
+void SimpleMqttSnClientTester::send_pingresp(device_address *destination) {
     message_header msg;
     msg.to_pingresp();
-    socket->send(destination, (uint8_t *) &msg, msg.length);
+    this->send(destination, (uint8_t *) &msg, msg.length);
 }
 
 void SimpleMqttSnClientTester::parse_pingresp(device_address *address, uint8_t *bytes) {
@@ -63,6 +68,13 @@ void SimpleMqttSnClientTester::parse_pingresp(device_address *address, uint8_t *
 
 void SimpleMqttSnClientTester::handle_pingresp(device_address *source) {
     // nothing to do
+}
+
+void SimpleMqttSnClientTester::send_pingreq(device_address *destination) {
+    msg_pingreq msg;
+    msg.length = 2;
+    msg.type = MQTTSN_PINGREQ;
+    this->send(destination, (uint8_t *) &msg, msg.length);
 }
 
 void SimpleMqttSnClientTester::parse_searchgw(device_address *address, uint8_t *bytes) {
@@ -82,7 +94,7 @@ void SimpleMqttSnClientTester::send_gwinfo(device_address *source, uint8_t radiu
     msg_gwinfo msg(GW_ID, (uint8_t *) socket->getAddress());
     msg.length = 3;
     msg.type = MQTTSN_GWINFO;
-    socket->send(source, (uint8_t *) &msg, radius);
+    this->send(source, (uint8_t *) &msg, radius);
 }
 
 void SimpleMqttSnClientTester::send_advertise(device_address *source, uint8_t gw_id, uint16_t duration) {
@@ -92,7 +104,7 @@ void SimpleMqttSnClientTester::send_advertise(device_address *source, uint8_t gw
     msg.gw_id = gw_id;
     msg.duration = duration;
 
-    socket->send(socket->getBroadcastAddress(), (uint8_t *) &msg, msg.length);
+    this->send(socket->getBroadcastAddress(), (uint8_t *) &msg, msg.length);
 }
 
 bool SimpleMqttSnClientTester::loop() {
@@ -108,5 +120,4 @@ bool SimpleMqttSnClientTester::begin() {
     last_advertisment_send_millis = (uint64_t) millis();
     return MqttSnMessageHandler::begin();
 }
-
 

@@ -22,7 +22,9 @@ public:
 
     void parse_pingreq(device_address *address, uint8_t *bytes);
 
-    void send_ping(device_address *destination);
+    void send_pingresp(device_address *destination);
+
+    void send_pingreq(device_address *destination);
 
     void parse_pingresp(device_address *address, uint8_t *bytes);
 
