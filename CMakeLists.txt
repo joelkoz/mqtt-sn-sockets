@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_definitions(-DRH_PLATFORM=RH_PLATFORM_RP -D__RASPBERRY_PI_)
 add_definitions(-DOWN_ADDRESS=0x03)
-add_subdirectory(lib/arduino-linux-abstraction/)
+if (EXISTS ${project_name}/lib/arduino-linux-abstraction/CMakeLists.txt)
+	add_subdirectory(lib/arduino-linux-abstraction/)
+endif()
 
 include_directories(RadioHeadRpi/)
 include_directories(lib/)
