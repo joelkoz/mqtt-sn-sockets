@@ -103,13 +103,22 @@ void MqttSnMessageHandler::printReceived(device_address *address, uint8_t *bytes
     printDeviceAddress(address);
     Serial.print(" | ");
     Serial.print(" bytes_len ");
+    Serial.print(" | ");
 #ifndef Arduino_h
     std::string number_str = std::to_string(bytes[0]);
     Serial.print(number_str.c_str());
+        if (bytes[1] == MQTTSN_SEARCHGW) {
+        Serial.print(" radius: ");
+        number_str = std::to_string(bytes[2]);
+        Serial.print(number_str.c_str());
+    }
 #else
     Serial.print(bytes[0]);
+    if (bytes[1] == MQTTSN_SEARCHGW) {
+        Serial.print(" radius: ");
+        Serial.print(bytes[2]);
+    }
 #endif
-    Serial.print(bytes[0]);
     Serial.print(" | ");
     printBuffer(bytes);
     Serial.println("");
