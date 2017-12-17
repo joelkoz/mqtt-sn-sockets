@@ -39,7 +39,16 @@ bool RF95Socket::begin() {
         return false;
     }
 #endif
-    return manager->init();
+    if(!manager->init()){
+        return false;
+      }
+    uint8_t dummy_data[1] = {0};
+    if(!manager->sendto((uint8_t*) &dummy_data, sizeof(dummy_data), 0)){
+        return false;
+      }
+    manager->waitPacketSent();
+    manager->available(); // put it back to receive mode
+    return true;
 }
 
 void RF95Socket::setRf95(RH_RF95 *rf95) {
