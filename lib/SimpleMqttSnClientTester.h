@@ -44,6 +44,11 @@ public:
 
 private:
     uint64_t last_advertisment_send_millis;
+
+    void parse_publish(device_address *source, uint8_t *bytes);
+
+    void handle_publish(device_address *source, uint8_t *data, uint16_t data_length, uint16_t message_id, uint16_t topic_id,
+                        bool short_topic, bool retain, int8_t qos, bool dup);
 };
 
 
