@@ -38,7 +38,7 @@ public:
     bool loop() override;
 
 private:
-    RH_RF95* rf95;
+    //RH_RF95* rf95;
     RHReliableDatagram* manager;
 
     device_address broadcastAddress;

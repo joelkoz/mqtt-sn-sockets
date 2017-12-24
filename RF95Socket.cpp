@@ -7,9 +7,11 @@ bool RF95Socket::begin() {
     if (this->mqttSnMessageHandler == nullptr) {
         return false;
     }
+    /*
     if (this->rf95 == nullptr) {
         return false;
     }
+    */
     if (this->manager == nullptr) {
         return false;
     }
@@ -17,6 +19,7 @@ bool RF95Socket::begin() {
     this->broadcastAddress = device_address(RH_BROADCAST_ADDRESS, 0, 0, 0, 0, 0);
     this->ownAddress = device_address(manager->thisAddress(), 0, 0, 0, 0, 0);
 
+    /*
     // Defaults after init are 434.0MHz, 13dBm, Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on
     if (!rf95->init()) {
         return false;
@@ -39,6 +42,8 @@ bool RF95Socket::begin() {
         return false;
     }
 #endif
+    */
+
     if(!manager->init()){
         return false;
       }
@@ -51,9 +56,11 @@ bool RF95Socket::begin() {
     return true;
 }
 
+/*
 void RF95Socket::setRf95(RH_RF95 *rf95) {
     RF95Socket::rf95 = rf95;
 }
+*/
 
 void RF95Socket::setManager(RHReliableDatagram *manager) {
     RF95Socket::manager = manager;
