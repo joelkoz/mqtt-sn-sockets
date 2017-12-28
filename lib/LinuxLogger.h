@@ -11,8 +11,9 @@
 #ifndef Arduino_h
 
 #include <Arduino.h>
-
-#if (RH_PLATFORM == RH_PLATFORM_RP)
+#if defined(RASPBERRY_PI)
+#include <RasPi.h>
+#else//if (RH_PLATFORM == RH_PLATFORM_RP)
 #include <wiringPi.h>
 #endif
 

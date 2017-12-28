@@ -30,7 +30,7 @@ void MqttSnMessageHandler::setLogger(LoggerInterface *logger) {
 
 
 bool MqttSnMessageHandler::send(device_address *destination, uint8_t *bytes, uint16_t bytes_len){
-    delay(2000);
+    //delay(2000);
     return socket->send(destination, bytes, bytes_len);
 }
 

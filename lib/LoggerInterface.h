@@ -2,11 +2,21 @@
 #define PLATFORMIOESP8266ENVIRONMENT_LOGGERINTERFACE_H
 
 #include <stdint.h>
+
+#if defined(RASPBERRY_PI)
+#include <RasPi.h>
+#endif
+
+
 #ifdef RH_PLATFORM
+
 #if (RH_PLATFORM == RH_PLATFORM_RPI)
 #include <wiringPi.h>
 #elif (RH_PLATFORM == RH_PLATFORM_ARDUINO)
 #endif
+
+#elif defined(RASPBERRY_PI)
+#include <RasPi.h>
 #endif
 #include <Arduino.h>
 

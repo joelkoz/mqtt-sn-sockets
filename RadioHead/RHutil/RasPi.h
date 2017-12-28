@@ -68,7 +68,9 @@ void digitalWrite(unsigned char pin, unsigned char value);
 
 unsigned long millis();
 
+//#if !defined(BCM2835_H)
 void delay (unsigned long delay);
+//#endif
 
 long random(long min, long max);
 

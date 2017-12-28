@@ -17,7 +17,7 @@ class RF95Socket : public SocketInterface{
 public:
     bool begin() override;
 
-    void setRf95(RH_RF95 *rf95);
+    //void setRf95(RH_RF95 *rf95);
 
     void setManager(RHReliableDatagram *manager);
 
