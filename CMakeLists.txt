@@ -14,14 +14,15 @@ set(CMAKE_CXX_STANDARD 11)
 
 #include_directories(RadioHeadRpi/)
 include_directories(lib/)
-include_directories(lib/arduino-linux-abstraction/src)
+#include_directories(lib/arduino-linux-abstraction/src)
 
 set(RH_RF95_RPI_SRC_FILES
         RadioHeadRpi/RH_RF95.h
         RadioHeadRpi/RH_RF95.cpp
         RadioHeadRpi/RHReliableDatagram.h
         RadioHeadRpi/RHReliableDatagram.cpp
-        RadioHeadRpi/RHutil/)
+#        RadioHeadRpi/RHutil/RasPi.cpp
+)
 
 set(EXAMPLE_LIB_SRC_FILES
 	lib/SocketInterface.h
@@ -29,8 +30,8 @@ set(EXAMPLE_LIB_SRC_FILES
 	lib/mqttsn_messages.h
 	lib/LoggerInterface.h
 	lib/LoggerInterface.cpp
-	lib/LinuxLogger.h
-	lib/LinuxLogger.cpp
+#	lib/LinuxLogger.h
+#	lib/LinuxLogger.cpp
 	lib/MqttSnMessageHandler.h
 	lib/MqttSnMessageHandler.cpp
 )
@@ -40,12 +41,13 @@ set(EXAMPLE_LIB_SRC_FILES
 
 add_library(lib-rh96-socket ${RH_RF95_RPI_SRC_FILES} RF95Socket.h RF95Socket.cpp)
 target_compile_definitions(lib-rh96-socket PRIVATE -DRH_PLATFORM=RH_PLATFORM_RPI)
-target_include_directories(lib-rh96-socket PRIVATE RadioHeadRpi)
-target_link_libraries(lib-rh96-socket arduino-linux-abstraction wiringPi)
+target_include_directories(lib-rh96-socket PRIVATE RadioHeadRpi RadioHeadRpi/RHutil)
+target_link_libraries(lib-rh96-socket wiringPi)
 
-add_library(example-lib-rh96-socket ${EXAMPLE_LIB_SRC_FILES})
+add_library(example-lib-rh96-socket ${EXAMPLE_LIB_SRC_FILES} RF95Socket.h RF95Socket.cpp )
 target_compile_definitions(example-lib-rh96-socket PRIVATE -DRH_PLATFORM=RH_PLATFORM_RPI)
-target_include_directories(example-lib-rh96-socket PRIVATE RadioHeadRpi)
+target_include_directories(example-lib-rh96-socket PRIVATE RadioHeadRpi RadioHeadRpi/RHutil)
+
 target_link_libraries(example-lib-rh96-socket lib-rh96-socket wiringPi)
 
 
@@ -64,7 +66,7 @@ set(RH_NRF24_RPI_SRC_FILES
 add_library(lib-rh-nrf24-socket ${RH_NRF24_RPI_SRC_FILES} RF95Socket.h RF95Socket.cpp)
 target_compile_definitions(lib-rh-nrf24-socket PRIVATE -DRASPBERRY_PI -DBCM2835_NO_DELAY_COMPATIBILITY)
 target_include_directories(lib-rh-nrf24-socket PRIVATE RadioHead RadioHead/RHutil)
-target_link_libraries(lib-rh-nrf24-socket arduino-linux-abstraction bcm2835)
+target_link_libraries(lib-rh-nrf24-socket bcm2835)
 
 add_library(example-lib-rh-nrf24-socket ${EXAMPLE_LIB_SRC_FILES})
 target_compile_definitions(example-lib-rh-nrf24-socket PRIVATE -DRASPBERRY_PI -DBCM2835_NO_DELAY_COMPATIBILITY)

@@ -5,9 +5,17 @@
 #ifndef DUMMY_MQTTSNMESSAGEHANDLER_H
 #define DUMMY_MQTTSNMESSAGEHANDLER_H
 
+#if defined(Arduino_h)
+#include <Arduino.h>
+#elif defined(RASPBERRY_PI)
+#include <RasPi.h>
+#elif defined(RH_PLATFORM)
+#include <wiringPi.h>
+#else
+#error "could not determine target environment"
+#endif
 
 #include <stdint.h>
-#include <Arduino.h>
 #include "mqttsn_messages.h"
 #include "SocketInterface.h"
 #include "LoggerInterface.h"
@@ -40,10 +48,6 @@ public:
 public:
     SocketInterface* socket = nullptr;
     LoggerInterface *logger = nullptr;
-
-#ifndef Arduino_h
-    SerialLinux Serial;
-#endif
 
 };
 
