@@ -5,7 +5,7 @@
 #ifndef DUMMY_MQTTSNMESSAGEHANDLER_H
 #define DUMMY_MQTTSNMESSAGEHANDLER_H
 
-#if defined(Arduino_h)
+#if defined(ARDUINO)
 #include <Arduino.h>
 #elif defined(RASPBERRY_PI)
 #include <RasPi.h>

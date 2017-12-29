@@ -69,7 +69,7 @@ void LoggerInterface::append_log(uint8_t *msg) {
         return;
     }
 #if defined(Arduino_h)
-    Serial.print(msg);
+    Serial.print(*msg);
 #else
     std::cout << msg << std::flush;
 #endif

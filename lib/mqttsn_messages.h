@@ -4,7 +4,9 @@
 
 #include "global_defines.h"
 #include <stdint.h>
+#if !defined(ARDUINO)
 #include <cstring>
+#endif
 
 
 #define PROTOCOL_ID 0x01

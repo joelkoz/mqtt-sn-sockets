@@ -144,7 +144,7 @@ void MqttSnMessageHandler::printDeviceAddress(device_address *address) {
         logger->append_log(number_str.c_str());
 #else
         //Serial.print(address->bytes[i]);
-        logger->append_log(address->bytes[i]);
+        logger->append_log(&address->bytes[i]);
 #endif
         if (i == sizeof(device_address) - 1) {
             //Serial.print(" }");

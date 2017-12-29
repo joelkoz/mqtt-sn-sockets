@@ -1,7 +1,7 @@
 #ifndef PLATFORMIOESP8266ENVIRONMENT_LOGGERINTERFACE_H
 #define PLATFORMIOESP8266ENVIRONMENT_LOGGERINTERFACE_H
 
-#if defined(Arduino_h)
+#if defined(ARDUINO)
 #include <Arduino.h>
 #elif defined(RASPBERRY_PI)
 #include <RasPi.h>
