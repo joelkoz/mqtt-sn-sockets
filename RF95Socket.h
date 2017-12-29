@@ -9,9 +9,9 @@
 
 //#define OWN_ADDRESS 0x02
 
-#define FREQUENCY 868
+//#define FREQUENCY 868
 //#define TX_POWER_PIN 18
-#define MODEM_CONFIG_CHOICE Bw31_25Cr48Sf512
+//#define MODEM_CONFIG_CHOICE Bw31_25Cr48Sf512
 
 class RF95Socket : public SocketInterface{
 public:
