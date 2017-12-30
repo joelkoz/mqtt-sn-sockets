@@ -7,7 +7,7 @@
 
 #include "global_defines.h"
 #include "LoggerInterface.h"
-#include "MqttSnMessageHandler.h"
+#include <../../../src/MqttSnMessageHandler.h>
 
 class MqttSnMessageHandler;
 
