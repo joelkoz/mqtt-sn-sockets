@@ -53,6 +53,10 @@ bool RF95Socket::begin() {
       }
     manager->waitPacketSent();
     manager->available(); // put it back to receive mode
+#if defined(GATEWAY_TRANSMISSION_PROTOCOL_RASPBERRY_RH_NRF24)
+    this->mqttSnMessageHandler->notify_socket_connected();
+#endif
+
     return true;
 }
 
