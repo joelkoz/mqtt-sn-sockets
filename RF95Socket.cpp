@@ -1,6 +1,7 @@
 #include "RF95Socket.h"
 
 bool RF95Socket::begin() {
+
     if (this->logger == nullptr) {
         return false;
     }
@@ -24,7 +25,6 @@ bool RF95Socket::begin() {
     if (!rf95->init()) {
         return false;
     }
-
 #ifdef FREQUENCY
     if (!rf95->setFrequency(FREQUENCY)) {
         return false;
@@ -43,7 +43,6 @@ bool RF95Socket::begin() {
     }
 #endif
     */
-
     if(!manager->init()){
         return false;
       }
@@ -56,7 +55,9 @@ bool RF95Socket::begin() {
 #if defined(GATEWAY_TRANSMISSION_PROTOCOL_RASPBERRY_RH_NRF24)
     this->mqttSnMessageHandler->notify_socket_connected();
 #endif
-
+#if defined(GATEWAY_TRANSMISSION_PROTOCOL_RASPBERRY_RH_RF95)
+    this->mqttSnMessageHandler->notify_socket_connected();
+#endif
     return true;
 }
 

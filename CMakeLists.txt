@@ -21,6 +21,14 @@ set(RH_RF95_RPI_SRC_FILES
         RadioHeadRpi/RH_RF95.cpp
         RadioHeadRpi/RHReliableDatagram.h
         RadioHeadRpi/RHReliableDatagram.cpp
+	RadioHeadRpi/RHDatagram.h
+	RadioHeadRpi/RHDatagram.cpp
+	RadioHeadRpi/RHGenericDriver.h
+	RadioHeadRpi/RHGenericDriver.cpp
+	RadioHeadRpi/RHGenericSPI.h
+	RadioHeadRpi/RHGenericSPI.cpp
+	RadioHeadRpi/RHLinuxSPI.h
+	RadioHeadRpi/RHLinuxSPI.cpp
 #        RadioHeadRpi/RHutil/RasPi.cpp
 )
 
