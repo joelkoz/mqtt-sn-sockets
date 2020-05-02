@@ -89,7 +89,10 @@ set(RH_DATAGRAM_SRC_FILES
 	RadioHeadRpi/RHDatagram.cpp
 	RadioHeadRpi/RHGenericDriver.h
 	RadioHeadRpi/RHGenericDriver.cpp
+	RadioHeadRpi/RH_Serial.cpp
+	RadioHeadRpi/RHCRC.cpp
     RadioHeadRpi/RHutil/RasPi.cpp
+    RadioHeadRpi/RHutil/HardwareSerial.cpp
 	RHDatagramSocket.h
 	RHDatagramSocket.cpp
 )

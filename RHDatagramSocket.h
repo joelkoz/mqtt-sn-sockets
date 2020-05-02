@@ -13,7 +13,7 @@
 #include "MqttSnMessageHandler.h"
 #include "SocketInterface.h"
 
-class RHDatagramSocket : SocketInterface {
+class RHDatagramSocket : public SocketInterface {
 
 public:
     bool begin() override;
