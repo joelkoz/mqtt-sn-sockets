@@ -105,6 +105,10 @@ unsigned long millis()
   return difference;
 }
 
+void resetTimerValue() {
+    gettimeofday(&RHStartTime, NULL);
+}
+
 void delay (unsigned long ms)
 {
   //Implement Delay function

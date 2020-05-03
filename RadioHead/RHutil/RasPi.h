@@ -68,6 +68,8 @@ void digitalWrite(unsigned char pin, unsigned char value);
 
 unsigned long millis();
 
+extern void resetTimerValue();
+
 //#if !defined(BCM2835_H)
 void delay (unsigned long delay);
 //#endif
