@@ -24,7 +24,14 @@ bool RHDatagramSocket::begin() {
         return false;
     }
 
-    return true;
+    logger->log("MQTT-SN incomming datagram socket waiting for initial connection...", 2);
+    if (manager->waitAvailableTimeout(this->msConnectTimeout)) {
+        this->mqttSnMessageHandler->notify_socket_connected();
+        return true;
+    }
+
+    logger->log("Incomming MQTT-SN connection timed out.", 0);
+    return false;
 }
 
 

@@ -36,6 +36,8 @@ public:
 
     void setMqttSnMessageHandler(MqttSnMessageHandler *mqttSnMessageHandler) override;
 
+    void setConnectionTimeout(uint16_t timeoutInMillis) { this-> msConnectTimeout = timeoutInMillis; }
+
 protected:
     RHDatagram* manager;
 
@@ -45,6 +47,8 @@ protected:
     LoggerInterface *logger = nullptr;
 
     MqttSnMessageHandler *mqttSnMessageHandler = nullptr;
+
+    uint16_t msConnectTimeout = 30000;
 
 };
 
