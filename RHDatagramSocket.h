@@ -13,6 +13,12 @@
 #include "MqttSnMessageHandler.h"
 #include "SocketInterface.h"
 
+/**
+ * A socket compatible with RadioHead's RHDatagram manager. Note that unless
+ * you have pre-existing code, you should use RHReliableDatagramSocket instead
+ * as it is also compatible with normal RHDatagram's on the other end, as it can
+ * have "reliable" mode turned on or off.
+ */
 class RHDatagramSocket : public SocketInterface {
 
 public:

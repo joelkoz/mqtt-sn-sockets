@@ -93,8 +93,8 @@ set(RH_DATAGRAM_SRC_FILES
 	RadioHeadRpi/RHCRC.cpp
     RadioHeadRpi/RHutil/RasPi.cpp
     RadioHeadRpi/RHutil/HardwareSerial.cpp
-	RHDatagramSocket.h
-	RHDatagramSocket.cpp
+	RHReliableDatagramSocket.h
+	RHReliableDatagramSocket.cpp
 )
 
 add_library(lib-rh-datagram-socket ${RH_DATAGRAM_SRC_FILES})
