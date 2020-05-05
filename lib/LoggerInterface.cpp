@@ -16,19 +16,15 @@ void LoggerInterface::log(const char *msg, uint8_t log_lvl) {
     if (log_lvl > current_log_lvl) {
         return;
     }
-#if defined(Arduino_h)
-    Serial.println();
-#else
-    std::cout << std::endl;
-#endif
     char millis_buffer[26];
     sprintf(millis_buffer, "%ld", millis());
 #if defined(Arduino_h)
     Serial.print(millis_buffer);
     Serial.print(": ");
     Serial.print(msg);
+    Serial.println();
 #else
-    std::cout << millis_buffer << ": " << msg << std::flush;
+    std::cout << millis_buffer << ": " << msg << std::endl << std::flush;
 #endif
 
 }

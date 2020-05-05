@@ -81,3 +81,23 @@ target_compile_definitions(example-lib-rh-nrf24-socket PRIVATE -DRASPBERRY_PI -D
 target_include_directories(example-lib-rh-nrf24-socket PRIVATE RadioHead RadioHead/RHutil)
 target_link_libraries(example-lib-rh-nrf24-socket lib-rh-nrf24-socket bcm2835)
  
+
+set(RH_DATAGRAM_SRC_FILES
+    RadioHeadRpi/RHReliableDatagram.h
+    RadioHeadRpi/RHReliableDatagram.cpp
+	RadioHeadRpi/RHDatagram.h
+	RadioHeadRpi/RHDatagram.cpp
+	RadioHeadRpi/RHGenericDriver.h
+	RadioHeadRpi/RHGenericDriver.cpp
+	RadioHeadRpi/RH_Serial.cpp
+	RadioHeadRpi/RHCRC.cpp
+    RadioHeadRpi/RHutil/RasPi.cpp
+    RadioHeadRpi/RHutil/HardwareSerial.cpp
+	RHReliableDatagramSocket.h
+	RHReliableDatagramSocket.cpp
+)
+
+add_library(lib-rh-datagram-socket ${RH_DATAGRAM_SRC_FILES})
+target_compile_definitions(lib-rh-datagram-socket PRIVATE -DRASPBERRY_PI -DBCM2835_NO_DELAY_COMPATIBILITY)
+target_include_directories(lib-rh-datagram-socket PRIVATE RadioHeadRPi RadioHeadRPi/RHutil)
+target_link_libraries(lib-rh-datagram-socket bcm2835)
