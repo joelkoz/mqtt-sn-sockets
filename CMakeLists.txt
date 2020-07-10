@@ -100,7 +100,7 @@ target_include_directories(example-lib-rh-nrf24-socket PRIVATE RadioHead RadioHe
 target_link_libraries(example-lib-rh-nrf24-socket lib-rh-nrf24-socket bcm2835)
 
 
-add_library(lib-lora-socket ${RH_LORA_RPI_SRC_FILES} LoRaSocket.h LoRaSocket.cpp)
+add_library(lib-lora-socket ${RH_LORA_RPI_SRC_FILES} RHReliableDatagramSocket.h RHReliableDatagramSocket.cpp)
 target_compile_definitions(lib-lora-socket PRIVATE -DRH_PLATFORM=RH_PLATFORM_RPI)
 target_include_directories(lib-lora-socket PRIVATE RadioHeadRpi RadioHeadRpi/RHutil)
 target_link_libraries(lib-lora-socket wiringPi)
