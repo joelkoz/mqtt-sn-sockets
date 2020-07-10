@@ -25,10 +25,8 @@ set(RH_RF95_RPI_SRC_FILES
 	RadioHeadRpi/RHDatagram.cpp
 	RadioHeadRpi/RHGenericDriver.h
 	RadioHeadRpi/RHGenericDriver.cpp
-	RadioHeadRpi/RHGenericSPI.h
-	RadioHeadRpi/RHGenericSPI.cpp
-	RadioHeadRpi/RHLinuxSPI.h
-	RadioHeadRpi/RHLinuxSPI.cpp
+	RadioHeadRpi/RHWirePiSPI.h
+	RadioHeadRpi/RHWirePiSPI.cpp
 #        RadioHeadRpi/RHutil/RasPi.cpp
 )
 
@@ -104,3 +102,24 @@ add_library(lib-lora-socket ${RH_LORA_RPI_SRC_FILES} LoRaSocket.h LoRaSocket.cpp
 target_compile_definitions(lib-lora-socket PRIVATE -DRH_PLATFORM=RH_PLATFORM_RPI)
 target_include_directories(lib-lora-socket PRIVATE RadioHeadRpi RadioHeadRpi/RHutil)
 target_link_libraries(lib-lora-socket wiringPi)
+ 
+
+set(RH_DATAGRAM_SRC_FILES
+    RadioHeadRpi/RHReliableDatagram.h
+    RadioHeadRpi/RHReliableDatagram.cpp
+	RadioHeadRpi/RHDatagram.h
+	RadioHeadRpi/RHDatagram.cpp
+	RadioHeadRpi/RHGenericDriver.h
+	RadioHeadRpi/RHGenericDriver.cpp
+	RadioHeadRpi/RH_Serial.cpp
+	RadioHeadRpi/RHCRC.cpp
+    RadioHeadRpi/RHutil/RasPi.cpp
+    RadioHeadRpi/RHutil/HardwareSerial.cpp
+	RHReliableDatagramSocket.h
+	RHReliableDatagramSocket.cpp
+)
+
+add_library(lib-rh-datagram-socket ${RH_DATAGRAM_SRC_FILES})
+target_compile_definitions(lib-rh-datagram-socket PRIVATE -DRASPBERRY_PI -DBCM2835_NO_DELAY_COMPATIBILITY)
+target_include_directories(lib-rh-datagram-socket PRIVATE RadioHeadRPi RadioHeadRPi/RHutil)
+target_link_libraries(lib-rh-datagram-socket bcm2835)
