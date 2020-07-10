@@ -25,8 +25,10 @@ set(RH_RF95_RPI_SRC_FILES
 	RadioHeadRpi/RHDatagram.cpp
 	RadioHeadRpi/RHGenericDriver.h
 	RadioHeadRpi/RHGenericDriver.cpp
-	RadioHeadRpi/RHWirePiSPI.h
-	RadioHeadRpi/RHWirePiSPI.cpp
+	RadioHeadRpi/RHGenericSPI.h
+	RadioHeadRpi/RHGenericSPI.cpp
+	RadioHeadRpi/RHLinuxSPI.h
+	RadioHeadRpi/RHLinuxSPI.cpp
 #        RadioHeadRpi/RHutil/RasPi.cpp
 )
 
@@ -40,6 +42,24 @@ set(EXAMPLE_LIB_SRC_FILES
 #	lib/LinuxLogger.cpp
 	lib/MqttSnMessageHandler.h
 	lib/MqttSnMessageHandler.cpp
+)
+
+
+set(RH_LORA_RPI_SRC_FILES
+        RadioHeadRpi/RH_LoRa.h
+        RadioHeadRpi/RH_LoRa.cpp
+        RadioHeadRpi/RHReliableDatagram.h
+        RadioHeadRpi/RHReliableDatagram.cpp
+	RadioHeadRpi/RHDatagram.h
+	RadioHeadRpi/RHDatagram.cpp
+	RadioHeadRpi/RHGenericDriver.h
+	RadioHeadRpi/RHGenericDriver.cpp
+	RadioHeadRpi/RHGenericSPI.h
+	RadioHeadRpi/RHGenericSPI.cpp
+	RadioHeadRpi/RHSPIDriver.h
+	RadioHeadRpi/RHSPIDriver.cpp
+	RadioHeadRpi/RHWiringPiSPI.h
+	RadioHeadRpi/RHWiringPiSPI.cpp
 )
 
 
@@ -78,6 +98,12 @@ add_library(example-lib-rh-nrf24-socket ${EXAMPLE_LIB_SRC_FILES})
 target_compile_definitions(example-lib-rh-nrf24-socket PRIVATE -DRASPBERRY_PI -DBCM2835_NO_DELAY_COMPATIBILITY)
 target_include_directories(example-lib-rh-nrf24-socket PRIVATE RadioHead RadioHead/RHutil)
 target_link_libraries(example-lib-rh-nrf24-socket lib-rh-nrf24-socket bcm2835)
+
+
+add_library(lib-lora-socket ${RH_LORA_RPI_SRC_FILES} RHReliableDatagramSocket.h RHReliableDatagramSocket.cpp)
+target_compile_definitions(lib-lora-socket PRIVATE -DRH_PLATFORM=RH_PLATFORM_RPI)
+target_include_directories(lib-lora-socket PRIVATE RadioHeadRpi RadioHeadRpi/RHutil)
+target_link_libraries(lib-lora-socket wiringPi)
  
 
 set(RH_DATAGRAM_SRC_FILES
